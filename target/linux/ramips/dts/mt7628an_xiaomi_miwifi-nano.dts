@@ -5,13 +5,13 @@
 
 / {
 	compatible = "xiaomi,miwifi-nano", "mediatek,mt7628an-soc";
-	model = "Xiaomi MiWiFi Nano";
+	model = " BI4PCS MMDVM 4G";
 
 	aliases {
-		led-boot = &led_status_amber;
-		led-failsafe = &led_status_red;
-		led-running = &led_status_blue;
-		led-upgrade = &led_status_amber;
+		led-boot = &led_status_TF;
+		led-failsafe = &led_status_4G;
+		led-running = &led_status_amber;
+		led-upgrade = &led_status_4G;
 		label-mac-device = &ethernet;
 	};
 
@@ -22,14 +22,14 @@
 	leds {
 		compatible = "gpio-leds";
 
-		led_status_blue: status_blue {
-			label = "blue:status";
-			gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
+		led_status_TF: status_TF {
+			label = "TF:status";
+			gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
 		};
 
-		led_status_red: status_red {
-			label = "red:status";
-			gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
+		led_status_4G: status_4G {
+			label = "4G:status";
+			gpios = <&gpio 36 GPIO_ACTIVE_LOW>;
 		};
 
 		led_status_amber: status_amber {
@@ -56,12 +56,28 @@
 	};
 };
 
+&uart1 {
+	status = "okay";
+};
+
+&uart2 {
+	status = "okay";
+};
+
+&sdhci {
+	status = "okay";
+	mediatek,cd-low;
+	
+};
+
 &ehci {
-	status = "disabled";
+	status = "okay";
+	
 };
 
 &ohci {
-	status = "disabled";
+	status = "okay";
+	
 };
 
 &esw {
@@ -83,7 +99,8 @@
 	flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <40000000>;
+		spi-max-frequency = <45000000>;
+		broken-flash-reset;
 
 		partitions {
 			compatible = "fixed-partitions";
@@ -110,7 +127,7 @@
 			partition@50000 {
 				compatible = "denx,uimage";
 				label = "firmware";
-				reg = <0x50000 0xfb0000>;
+				reg = <0x50000 0x1fb0000>;
 			};
 		};
 	};
