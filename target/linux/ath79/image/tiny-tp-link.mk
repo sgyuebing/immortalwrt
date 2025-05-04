@@ -1,7 +1,7 @@
 include ./common-tp-link.mk
 
 define Device/tplink_tl-mr10u
-  $(Device/tplink-4mlzma)
+  $(Device/tplink-16mlzma)
   SOC := ar9331
   DEVICE_MODEL := TL-MR10U
   DEVICE_PACKAGES := kmod-usb-chipidea2
@@ -259,7 +259,7 @@ endef
 TARGET_DEVICES += tplink_tl-wpa8630p-v2.1-eu
 
 define Device/tplink_tl-wr703n
-  $(Device/tplink-4mlzma)
+  $(Device/tplink-16mlzma)
   SOC := ar9331
   DEVICE_MODEL := TL-WR703N
   DEVICE_PACKAGES := kmod-usb-chipidea2
