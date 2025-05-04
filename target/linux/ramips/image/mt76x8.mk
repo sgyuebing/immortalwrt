@@ -808,10 +808,10 @@ endef
 TARGET_DEVICES += xiaomi_mi-router-4c
 
 define Device/xiaomi_miwifi-nano
-  IMAGE_SIZE := 16064k
+  IMAGE_SIZE := 32448k
   DEVICE_VENDOR := Xiaomi
   DEVICE_MODEL := MiWiFi Nano
-  DEVICE_PACKAGES := uboot-envtools
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci uboot-envtools kmod-sdhci-mt7620 kmod-usb-net-rndis kmod-usb-net-qmi-wwan kmod-usb-serial-option uqmi
   SUPPORTED_DEVICES += miwifi-nano
 endef
 TARGET_DEVICES += xiaomi_miwifi-nano
