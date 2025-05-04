@@ -2,7 +2,7 @@
 
 / {
 	compatible = "onion,omega2p", "onion,omega2", "mediatek,mt7628an-soc";
-	model = "Onion Omega2+";
+	model = "4G Hotspot";
 };
 
 &flash0 {

@@ -7,7 +7,7 @@
 
 / {
 	compatible = "dlink,dir-510l", "ralink,mt7620a-soc";
-	model = "D-Link DIR-510L";
+	model = "BI4PCS DIR-510L";
 
 	aliases {
 		led-boot = &led_status;
@@ -17,7 +17,7 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyS1,57600";
+		bootargs = "console=ttyS0,57600";
 	};
 
 	keys {
@@ -52,7 +52,9 @@
 };
 
 &ethernet {
-	mediatek,portmap = "llllw";
+	mtd-mac-address = <&factory 0x4>;
+
+	mediatek,portmap = "wllll";
 };
 
 &uart {
@@ -65,7 +67,8 @@
 	flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <50000000>;
+		spi-max-frequency = <45000000>;
+		broken-flash-reset;
 
 		partitions {
 			compatible = "fixed-partitions";
@@ -73,27 +76,27 @@
 			#size-cells = <1>;
 
 			partition@0 {
-				label = "jboot";
-				reg = <0x0 0x10000>;
+				label = "u-boot";
+				reg = <0x0 0x30000>;
 				read-only;
 			};
 
-			partition@10000 {
-				label = "recovery";
-				reg = <0x10000 0x200000>;
+			partition@30000 {
+				label = "u-boot-env";
+				reg = <0x30000 0x10000>;
 				read-only;
 			};
 
-			partition@210000 {
-				compatible = "amit,jimage";
+			factory: partition@40000 {
+				label = "factory";
+				reg = <0x40000 0x10000>;
+				read-only;
+			};
+
+			partition@50000 {
+				compatible = "denx,uimage";
 				label = "firmware";
-				reg = <0x210000 0xde0000>;
-			};
-
-			config: partition@ff0000 {
-				label = "config";
-				reg = <0xff0000 0x10000>;
-				read-only;
+				reg = <0x50000 0x1fb0000>;
 			};
 		};
 	};
@@ -107,16 +110,19 @@
 	status = "okay";
 };
 
+&wmac {
+	ralink,mtd-eeprom = <&factory 0x0>;
+};
+
 &pcie {
 	status = "okay";
 };
 
 &pcie0 {
-	mt76x0e@0,0 {
+	mt76@0,0 {
 		reg = <0x0000 0 0 0 0>;
-		mtd-mac-address = <&config 0xe490>;
-		mtd-mac-address-increment = <(2)>;
-		mediatek,mtd-eeprom = <&config 0xe05d>;
+		mediatek,mtd-eeprom = <&factory 0x8000>;
+		ieee80211-freq-limit = <5000000 6000000>;
 	};
 };
 

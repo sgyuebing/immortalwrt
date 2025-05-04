@@ -24,6 +24,11 @@
 
 		led_system: system {
 			label = "green:system";
+			gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
+		};
+		
+		led_status_red: status_red {
+			label = "red:status";
 			gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
 		};
 

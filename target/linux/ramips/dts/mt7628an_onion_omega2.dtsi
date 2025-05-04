@@ -24,6 +24,17 @@
 			label = "amber:system";
 			gpios = <&gpio 44 GPIO_ACTIVE_LOW>;
 		};
+
+    led_4G: 4G {
+			label = "4G:system";
+			gpios = <&gpio 36 GPIO_ACTIVE_LOW>;
+
+		};
+		
+		led_TF: TF {
+			label = "TF:system";
+			gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
+		};
 	};
 
 	keys {
