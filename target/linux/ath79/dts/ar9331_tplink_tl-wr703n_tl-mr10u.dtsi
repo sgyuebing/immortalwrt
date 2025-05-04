@@ -49,7 +49,7 @@
 	flash@0 {
 		compatible = "jedec,spi-nor";
 		reg = <0>;
-		spi-max-frequency = <25000000>;
+		spi-max-frequency = <10000000>;
 
 		partitions {
 			compatible = "fixed-partitions";
@@ -64,7 +64,7 @@
 
 			partition@20000 {
 				compatible = "tplink,firmware";
-				reg = <0x20000 0x3d0000>;
+				reg = <0x50000 0xfb0000>;
 				label = "firmware";
 			};
 
