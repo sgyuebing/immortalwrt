@@ -219,17 +219,12 @@ endef
 TARGET_DEVICES += dlink_dch-m225
 
 define Device/dlink_dir-510l
-  $(Device/amit_jboot)
   SOC := mt7620a
-  IMAGE_SIZE := 14208k
-  LOADER_FLASH_OFFS := 0x220000
+  IMAGE_SIZE := 32448k
   DEVICE_VENDOR := D-Link
   DEVICE_MODEL := DIR-510L
-  DEVICE_PACKAGES += kmod-mt76x0e
-  DLINK_ROM_ID := DLK6E3805001
-  DLINK_FAMILY_MEMBER := 0x6E38
-  DLINK_FIRMWARE_SIZE := 0xDE0000
-  DLINK_IMAGE_OFFSET := 0x210000
+  DEVICE_PACKAGES := kmod-mt76x0e kmod-usb2 kmod-usb-ohci
+  SUPPORTED_DEVICES += dir-510l
 endef
 TARGET_DEVICES += dlink_dir-510l
 
