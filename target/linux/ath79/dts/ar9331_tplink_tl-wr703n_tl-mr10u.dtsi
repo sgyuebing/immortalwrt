@@ -57,7 +57,7 @@
 			#size-cells = <1>;
 
 			uboot: partition@0 {
-				reg = <0x0 0x20000>;
+				reg = <0x30000 0x10000>;
 				label = "u-boot";
 				read-only;
 			};
