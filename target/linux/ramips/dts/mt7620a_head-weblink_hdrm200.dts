@@ -7,7 +7,7 @@
 
 / {
 	compatible = "head-weblink,hdrm200", "ralink,mt7620a-soc";
-	model = "Head Weblink HDRM200";
+	model = "BI4PCS 4G TEL";
 
 	aliases {
 		led-boot = &led_system;
@@ -17,7 +17,7 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyS1,57600";
+		bootargs = "console=ttyS0,57600";
 	};
 
 	leds {
@@ -25,17 +25,21 @@
 
 		rssi {
 			label = "red:rssi";
-			gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
 		};
 
 		led_system: system {
 			label = "green:system";
-			gpios = <&gpio1 14 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
 		};
 
 		air {
 			label = "green:wifi";
 			gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
+			
+		wan {
+			label = "green:wan";
+			gpios = <&gpio2 4 GPIO_ACTIVE_LOW>;
 		};
 	};
 
@@ -120,8 +124,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&rgmii1_pins &rgmii2_pins &mdio_pins>;
 
-	nvmem-cells = <&macaddr_factory_4>;
-	nvmem-cell-names = "mac-address";
+	mtd-mac-address = <&factory 0x4>;
 
 	port@4 {
 		status = "okay";
@@ -167,29 +170,6 @@
 	};
 };
 
-&pcie {
-	status = "okay";
-};
-
-&pcie0 {
-	wifi@0,0 {
-		compatible = "mediatek,mt76";
-		reg = <0x0000 0 0 0 0>;
-		mediatek,mtd-eeprom = <&factory 0x8000>;
-		ieee80211-freq-limit = <5000000 6000000>;
-	};
-};
-
 &uart {
 	status = "okay";
-};
-
-&factory {
-	compatible = "nvmem-cells";
-	#address-cells = <1>;
-	#size-cells = <1>;
-
-	macaddr_factory_4: macaddr@4 {
-		reg = <0x4 0x6>;
-	};
 };
