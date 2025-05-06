@@ -1,0 +1,26 @@
+--- a/drivers/usb/serial/option.c
++++ b/drivers/usb/serial/option.c
+@@ -240,6 +240,12 @@ static void option_instat_callback(struct urb *urb);
+ #define WETELECOM_PRODUCT_6802			0x6802
+ #define WETELECOM_PRODUCT_WMD300		0x6803
+ 
++/* ThinkWill Products */
++#define THINKWILL_LTE_VENDOR_ID			0x19d2
++#define THINKWILL_PRODUCT_ML7820_ECM		0x0199
++#define THINKWILL_PRODUCT_ML7820_NDIS		0x0532
++#define THINKWILL_PRODUCT_ML7820_DL		0x0256
++
+ /* Device flags */
+ 
+ /* Higher interface number for Sierra */
+@@ -1075,6 +1081,9 @@ static const struct usb_device_id option_ids[] = {
+ 	{ USB_DEVICE(ALINK_VENDOR_ID, ALINK_PRODUCT_3GU) },
+ 	{ USB_DEVICE_AND_INTERFACE_INFO(ALINK_VENDOR_ID, ALINK_PRODUCT_3GU, 0xff, 0xff, 0xff) },
+ 	{ USB_DEVICE(ALINK_VENDOR_ID, SIMCOM_PRODUCT_SIM7100E),
+ 	  .driver_info = RSVD(5) | RSVD(6) },
++	{ USB_DEVICE(THINKWILL_LTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820_ECM) },
++	{ USB_DEVICE(THINKWILL_LTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820_NDIS) },
++	{ USB_DEVICE(THINKWILL_LTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820_DL) },
+ 	{ USB_DEVICE_INTERFACE_CLASS(0x1e0e, 0x9003, 0xff) },	/* Simcom SIM7500/SIM7600 MBIM mode */
+ 	{ USB_DEVICE_INTERFACE_CLASS(0x1e0e, 0x9011, 0xff) },	/* Simcom SIM7500/SIM7600 RNDIS mode */
+ 	{ USB_DEVICE_INTERFACE_CLASS(0x1e0e, 0x9205, 0xff) },	/* Simcom SIM7070/SIM7080/SIM7090 AT+ECM mode */
