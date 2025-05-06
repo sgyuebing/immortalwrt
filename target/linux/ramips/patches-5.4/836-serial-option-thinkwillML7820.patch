@@ -1,0 +1,19 @@
+--- a/drivers/usb/serial/option.c
++++ b/drivers/usb/serial/option.c
+@@ -320,6 +320,7 @@ static void option_instat_callback(struc
+ #define ZTE_PRODUCT_MC2718			0xffe8
+ #define ZTE_PRODUCT_AD3812			0xffeb
+ #define ZTE_PRODUCT_MC2716			0xffed
++#define THINKWILL_PRODUCT_ML7820		0x0532
+ 
+ #define BENQ_VENDOR_ID				0x04a5
+ #define BENQ_PRODUCT_H10			0x4068
+@@ -1374,6 +1375,8 @@ static const struct usb_device_id option
+ 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0395, 0xff, 0xff, 0xff) },
+ 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0412, 0xff, 0xff, 0xff), /* Telewell TW-LTE 4G */
+ 	  .driver_info = RSVD(4) },
++	{ USB_DEVICE_INTERFACE_CLASS(ZTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820, 0xff), /* Thinkwill ML7820+ 4G LTE */
++	  .driver_info = RSVD(0) | RSVD(1) },
+ 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0414, 0xff, 0xff, 0xff) },
+ 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0417, 0xff, 0xff, 0xff) },
+ 	{ USB_DEVICE_INTERFACE_CLASS(ZTE_VENDOR_ID, 0x0601, 0xff) },	/* GosunCn ZTE WeLink ME3630 (RNDIS mode) */
