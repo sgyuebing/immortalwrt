@@ -7,7 +7,7 @@
 
 / {
 	compatible = "hilink,hlk-7628n", "mediatek,mt7628an-soc";
-	model = "HILINK HLK-7628N";
+	model = "BI4PCS 4G";
 
 	keys {
 		compatible = "gpio-keys";
