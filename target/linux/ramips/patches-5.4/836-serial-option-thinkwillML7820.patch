@@ -1,19 +1,24 @@
 --- a/drivers/usb/serial/option.c
 +++ b/drivers/usb/serial/option.c
-@@ -320,6 +320,7 @@ static void option_instat_callback(struc
- #define ZTE_PRODUCT_MC2718			0xffe8
- #define ZTE_PRODUCT_AD3812			0xffeb
- #define ZTE_PRODUCT_MC2716			0xffed
-+#define THINKWILL_PRODUCT_ML7820		0x0532
+@@ -219,6 +219,11 @@ static void option_instat_callback(struct urb *urb);
+ #define WETELECOM_PRODUCT_6802			0x6802
+ #define WETELECOM_PRODUCT_WMD300		0x6803
  
- #define BENQ_VENDOR_ID				0x04a5
- #define BENQ_PRODUCT_H10			0x4068
-@@ -1374,6 +1375,8 @@ static const struct usb_device_id option
- 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0395, 0xff, 0xff, 0xff) },
- 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0412, 0xff, 0xff, 0xff), /* Telewell TW-LTE 4G */
- 	  .driver_info = RSVD(4) },
-+	{ USB_DEVICE_INTERFACE_CLASS(ZTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820, 0xff), /* Thinkwill ML7820+ 4G LTE */
-+	  .driver_info = RSVD(0) | RSVD(1) },
- 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0414, 0xff, 0xff, 0xff) },
- 	{ USB_DEVICE_AND_INTERFACE_INFO(ZTE_VENDOR_ID, 0x0417, 0xff, 0xff, 0xff) },
- 	{ USB_DEVICE_INTERFACE_CLASS(ZTE_VENDOR_ID, 0x0601, 0xff) },	/* GosunCn ZTE WeLink ME3630 (RNDIS mode) */
++/* ThinkWill Products */
++#define THINKWILL_LTE_VENDOR_ID			0x19d2
++#define THINKWILL_PRODUCT_ML7820_ECM		0x0199	/* ECM mode */
++#define THINKWILL_PRODUCT_ML7820_NDIS		0x0532	/* NDIS mode */
++#define THINKWILL_PRODUCT_ML7820_DL		0x0256	/* Download mode */
+ 
+ /* Device flags */
+ 
+@@ -1091,6 +1096,9 @@ static const struct usb_device_id option_ids[] = {
+ 	{ USB_DEVICE(ALINK_VENDOR_ID, ALINK_PRODUCT_3GU) },
+ 	{ USB_DEVICE(ALINK_VENDOR_ID, SIMCOM_PRODUCT_SIM7100E),
+ 	  .driver_info = RSVD(5) | RSVD(6) },
++	{ USB_DEVICE(THINKWILL_LTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820_ECM) },
++	{ USB_DEVICE(THINKWILL_LTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820_NDIS) },
++	{ USB_DEVICE(THINKWILL_LTE_VENDOR_ID, THINKWILL_PRODUCT_ML7820_DL) },
+ 	{ USB_DEVICE(ALCATEL_VENDOR_ID, ALCATEL_PRODUCT_X060S_X200),
+ 	  .driver_info = NCTRL(0) | NCTRL(1) | RSVD(4) },
+ 	{ USB_DEVICE(ALCATEL_VENDOR_ID, ALCATEL_PRODUCT_X220_X500D),
