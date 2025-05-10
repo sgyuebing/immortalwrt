@@ -8,8 +8,8 @@
 	model = " BI4PCS MMDVM 4G";
 
 	aliases {
-		led-boot = &led_status_TF;
-		led-failsafe = &led_status_4G;
+		led-boot = &led_status_amber;
+		led-failsafe = &status_TF;
 		led-running = &led_status_amber;
 		led-upgrade = &led_status_4G;
 		label-mac-device = &ethernet;
